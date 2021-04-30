@@ -1,0 +1,336 @@
+ <!doctype html>
+<html lang="en">
+  <head>
+    <title>{{title}}</title> 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href = "css/pcdlstyle.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap" rel="stylesheet">
+     {{!-- <link rel="stylesheet" href = "./node_modules/video.js/dist\video-js.css" type="text/stylesheet"> --}}
+     <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet"  />
+     <link href="https://unpkg.com/@videojs/themes@1/dist/city/index.css" rel="stylesheet" type="text/stylesheet">
+     <link href="https://unpkg.com/@videojs/themes@1/dist/sea/index.css" rel="stylesheet" type="text/stylesheet">
+<!-- End WOWSlider.com HEAD section -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script>
+     
+  </script>
+  
+  </head>
+  <body style="background-color: lightslategray;">
+
+      <div class="agileits-main">
+		<div class="wthree-row w3-agile"> 
+			<div id="videoContainer">
+				<div class="overlay" style="background-image: url('{{coversrx}}');">
+					<div class="button agileinfo"></div>
+				</div>
+				<div id="video">
+					<video src="{{videosrcx}}" 
+					poster="{{coversrx}}" ></video>
+					
+				</div>
+				<div id="controls">
+					<div class="playButton">
+						<div class="playPause"></div>
+					</div>
+					<div class="ProgressContainer">
+						<div class="timer intialTime"> 00:00 </div>
+						<div class="progressBar">
+							<div class="progress"></div>
+						</div>
+						<div class="time"> 00:00 </div>
+						<div class="timer fullTime"> 00:00 </div>
+					</div>
+					<div class="volume">
+						<div class="icon"></div>
+						<div class="intensityBar">
+							<div class="intensity"></div>
+						</div>
+					</div>
+					<div class="scale">
+						<div class="icon"></div>
+					</div>
+				</div>
+			</div>
+			
+		</div>	
+	</div>	
+	<!-- //agileits-main -->
+    
+
+ 
+ {{!-- <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script> --}}
+<script>
+   
+  $(document).ready(function () {
+
+				'use strict';
+                  
+                  $("body").on("contextmenu", function (e)  
+                   {  
+                        return false;  
+                     });  
+                  //  vidattr=$('#videoContainer .overlay').css('background-image')
+                   // if(vidattr<=5){
+                       // $('#videoContainer .overlay').css('background-image','images/pcdl-logo.png')
+                   // }
+				var play_pause     = $('.playButton'),
+					container      = $('#videoContainer'),
+					playIcon       = $('.playButton .playPause'),
+					video          = $('video'),
+					play           = $('.play'),
+					volume         = $('.volume .icon'),
+					volumeIntesity = $('.volume .intensityBar'),
+					intensity      = $('.intensity'),
+					progressBar    = $('.progressBar'),
+					progress       = $('.progressBar .progress'),
+					timer          = $('.intialTime'),
+					vidDuration    = $('.fullTime'),
+					expandButton   = $('.scale .icon'),
+					overlayScreen  = $('.overlay'),
+					timeState      = $('.time'),
+					overlayButton  = $('.overlay .button'),
+					update;
+
+                    $(window).resize(function () { resizeVid(); });
+                    updateplayer();
+				    resizeVid();
+                    play_pause.add(video).click(function () { playVid(); });
+
+                    overlayButton.click(function () { playVid(); });
+                    overlayScreen.click(function () { playVid(); });
+                    progressBar.click(function () {skip(); });
+
+                    progressBar.mousemove(function () { timeState.text(getTimeState()); });
+
+                    volume.click(function () { toggleMute(); });
+
+                    volumeIntesity.click(function () { changeVolume(); });
+
+                    expandButton.click(function () { fullScreen(); });
+
+                    overlayButton.click(function () { playVid();});
+                
+                    vidDuration.text(getFormatedFullTime());
+
+
+                    function playVid() {
+                        if (video.get(0).paused) {
+                            video.get(0).play();
+                            playIcon.css({
+                            'background-image': 'url(images/pause.png)',
+                            'background-size': '100% 100%'
+                            });
+                            overlayScreen.hide();
+                            update = setInterval(updateplayer, 1);
+
+                        } else {
+                            video.get(0).pause();
+                            playIcon.css({
+                            'background': 'url(images/play.png)',
+                            'background-size': '100% 100%'
+                            });
+                            overlayScreen.css('background-image','url(" ")')
+                            overlayScreen.show();
+                            clearInterval(update);
+                        }
+                    }
+                
+                    function updateplayer() {
+                        var percentage = (video[0].currentTime / video[0].duration) * 100;
+                        progress.css({'width': percentage + '%'});
+                        timer.text(getFormatedTime());
+                        vidDuration.text(getFormatedFullTime());
+
+                        if (video[0].ended) {
+                            playIcon.css({
+                            'background': 'url(images/play.png)',
+                            'background-size': '100% 100%'
+                            });
+                            overlayScreen.show();
+                            overlayButton.css({
+                            'background': 'url(images/replay.png)',
+                            'background-size': '100% 100%'
+                            });
+                        } else if (video[0].paused) {
+                            overlayButton.css({
+                            'background': 'url(images/play-button.png)',
+                            'background-size': '100% 100%'
+                            });
+                        }
+                    }
+
+                    function getTimeState() {
+
+                    var mouseX = event.pageX - progressBar.offset().left,
+                        width  = progressBar.outerWidth();
+
+                    var currentSeconeds = Math.round((mouseX / width) * video[0].duration);
+                    var currentMinutes  = Math.floor(currentSeconeds/60);
+
+                    if (currentMinutes > 0) {
+                        currentSeconeds -= currentMinutes * 60;
+                    }
+                    if (currentSeconeds.toString().length === 1) {
+                        currentSeconeds = "0" + currentSeconeds;
+                        }
+                        if (currentMinutes.toString().length === 1) {
+                            currentMinutes = "0" + currentMinutes;
+                        }
+
+                        timeState.css('left', (mouseX / width) * progressBar.width() + 18 + 'px');
+
+                        return currentMinutes + ':' + currentSeconeds;
+
+                    }
+
+                    function skip() {
+                        var mouseX = event.pageX - progressBar.offset().left,
+                            width  = progressBar.outerWidth();
+                    video[0].currentTime = (mouseX / width) * video[0].duration;
+                    updateplayer();
+                    }
+
+                    function getFormatedFullTime() {
+
+                        var totalSeconeds = Math.round(video[0].duration);
+                        var totalMinutes  = Math.floor(totalSeconeds/60);
+                        if (totalMinutes > 0) {
+                            totalSeconeds -= totalMinutes * 60;
+                        }
+                        if (totalSeconeds.toString().length === 1) {
+                            totalSeconeds = "0" + totalSeconeds;
+                        }
+                        if (totalMinutes.toString().length === 1) {
+                            totalMinutes = "0" + totalMinutes;
+                        }
+                        return totalMinutes + ':' + totalSeconeds;
+                    }
+
+                    function getFormatedTime() {
+                        var seconeds = Math.round(video[0].currentTime);
+                        var minutes  = Math.floor(seconeds / 60);
+
+                        if (minutes > 0) {
+                            seconeds -= minutes * 60;
+                        }
+                        if (seconeds.toString().length === 1) {
+                            seconeds = "0" + seconeds;
+                        }
+                        if (minutes.toString().length === 1) {
+                            minutes = "0" + minutes;
+                        }
+                        return minutes + ':' + seconeds;
+                    }
+
+                    function toggleMute() {
+                        if (!video[0].muted) {
+                        video[0].muted = true;
+                        volume.css({
+                            'background': 'url(images/mute.png)',
+                            'background-size': '100% 100%'
+                        });
+                        intensity.hide();
+                        } else {
+                        video[0].muted = false;
+                        volume.css({
+                            'background': 'url(images/volume.png)',
+                            'background-size': '100% 100%'
+                        });
+                        intensity.show();
+                        }
+                    }
+
+                    function changeVolume() {
+                    var mouseX = event.pageX - volumeIntesity.offset().left,
+                        width  = volumeIntesity.outerWidth();
+
+                    video[0].volume = (mouseX / width);
+                    intensity.css('width', (mouseX / width) * width + 'px');
+                    video[0].muted = false;
+                    volume.css({
+                        'background': 'url(images/volume.png)',
+                        'background-size': '100% 100%'
+                    });
+                    intensity.show();
+                    }
+
+                    function fullScreen() {
+                        if (video[0].requestFullscreen) {
+                        video[0].requestFullscreen();
+                        } else if (video[0].webkitRequestFullscreen) {
+                        video[0].webkitRequestFullscreen();
+                        } else if (video[0].mozRequestFullscreen) {
+                        video[0].mozRequestFullscreen();
+                        } else if (video[0].msRequestFullscreen) {
+                        video[0].msRequestFullscreen();
+                        } else {
+                        video.dblclick(function () { fullScreen(); });
+                        }
+
+                    }
+
+                    function resizeVid() {
+                    if (container.width() < 600) {
+                        container.addClass('small');
+                    } else {
+                        container.removeClass('small');
+                    }
+                    }
+
+                    $(window).keypress(function (e) {
+                    if (e.keyCode === 0 || e.keyCode === 32) {
+                        e.preventDefault()
+                        playVid();
+                    }else{
+                        e.preventDefault()
+                    }
+                    });
+                    $(document).keydown(function (e) {
+                         if (event.keyCode == 123) {
+                                return false;
+                                }
+                                // Prevent Ctrl+a = disable select all
+                                // Prevent Ctrl+u = disable view page source
+                                // Prevent Ctrl+s = disable save
+                                if (event.ctrlKey && (event.keyCode === 85 || event.keyCode === 83 || event.keyCode ===65 )) {
+                                return false;
+                                }
+                                // Prevent Ctrl+Shift+I = disabled debugger console using keys open
+                                else if (event.ctrlKey && event.shiftKey && event.keyCode === 73)
+                                {
+                                return false;
+                                }
+                        
+                    });
+                
+                    for (var i = 0, l = videos.length; i < l; i++) {
+                    var video = videos[i];
+                    var src = video.src || (function () {
+                        var sources = video.querySelectorAll("source");
+                        for (var j = 0, sl = sources.length; j < sl; j++) {
+                            var source = sources[j];
+                            var type = source.type;
+                            var isMp4 = type.indexOf("mp4") != -1;
+                            if (isMp4) return source.src;
+                        }
+                        return null;
+                    })();
+
+                     
+                  //window.location="/playerpage";
+      
+         }
+  })
+                    
+
+</script>
+ </body>
+ </html> 

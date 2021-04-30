@@ -1,0 +1,52 @@
+
+
+<div class="container">
+    <div class="container">
+       <div class="text-center m-5">
+           <img class="img " src="/images/PCDL_Logo.png" style="width:20%;height:auto">
+       </div>
+    </div>
+    <div class="card mx-auto shadow col-12 col-md-8" style="border-radius:15px;">
+      {{#if message}}<p class="alert alert-warning p-2 text-center my-2">{{message}}</p>{{/if}}
+       <form class="form pt-4" method="POST" action="/login">
+           <div class="row m-3" style="border:lightgray solid 1px; border-radius:10px;">
+             <i class="fas fa-envelope p-2 col-auto pcdl-blue"></i><input type="text" name="email" class="form-control col-10 border-0" placeholder="Email Address" >
+           </div>
+           <div class="row m-3" style="border:lightgray solid 1px; border-radius:10px;">
+             <i class="fas fa-unlock-alt p-2 col-auto pcdl-blue"></i>
+             <input type="password" name="password" class="form-control col-9 col-sm-10 border-0" placeholder="Password" >
+             <i class="fas fa-eye-slash p-2 text-right col-auto " onclick="showpass(event)"></i>
+           </div>
+            <div class="text-center"><button type="submit" class="btn pcdl-blueback text-white p-3 w-50 my-3" style="border-radius:30px;">Sign In</button></div>
+            
+  
+       </form>
+       <div class="text-center"><button class="btn p-3 w-md-50 w-75 my-2" style="border-radius:30px;">Forget Password?</button></div>
+    </div>
+    <div class="text-center col-12 col-md-7 mx-auto my-4" style="border:#5C93C5 solid 1px; border-radius:30px;"><a href="/sign_up"><button class="btn p-2 w-md-50 w-75" >New Here? Sign Up</button></a></div>
+<script>
+      $('i.fa-eye-slash').click(function(e)
+    {
+      $(this).prev('input').attr('type','text')
+      $(this).replaceWith("<i class='fas fa-eye p-2 col-auto' onclick='hidepass(event)'></i>")
+    })
+     function showpass(e)
+      {
+    
+         $(e.target).prev('input').attr('type','text')
+        $(e.target).replaceWith("<i class='fas fa-eye p-2 col-auto' onclick='hidepass(event)'></i>")
+       
+      }
+      
+     function hidepass (e)
+      {
+    
+         $(e.target).prev('input').attr('type','password')
+        $(e.target).replaceWith("<i class='fas fa-eye-slash p-2 col-auto' onclick='showpass(event)'></i>")
+       
+      }
+     
+</script>
+
+
+</div>

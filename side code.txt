@@ -1,0 +1,5 @@
+<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <div class="dropdown-item"> {{#if userdata.first_name}} {{userdata.first_name userdata.last_name}} {{else}} {{userdata.email}}{{/if}}</div>
+                         <a class="dropdown-item" href="#">Another action</a>
+                         <a class="dropdown-item" href="#">Something else here</a>
+                      </div>

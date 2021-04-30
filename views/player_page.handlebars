@@ -1,0 +1,40 @@
+
+<iframe src="" frameborder="0"  height="400px" class="col-12" style="height:50em;" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+
+</iframe>
+
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    $("body").on("contextmenu", function (e)  
+                   {  
+                        return false;  
+                     });  
+      $(window).keypress(function (e) {
+                    if (e.keyCode === 0 || e.keyCode === 32) {
+                        e.preventDefault()
+                        playVid();
+                    }else{
+                        e.preventDefault()
+                    }
+                    });
+                    $(document).keydown(function (e) {
+                         if (event.keyCode == 123) {
+                                return false;
+                                }
+                                // Prevent Ctrl+a = disable select all
+                                // Prevent Ctrl+u = disable view page source
+                                // Prevent Ctrl+s = disable save
+                                if (event.ctrlKey && (event.keyCode === 85 || event.keyCode === 83 || event.keyCode ===65 )) {
+                                return false;
+                                }
+                                // Prevent Ctrl+Shift+I = disabled debugger console using keys open
+                                else if (event.ctrlKey && event.shiftKey && event.keyCode === 73)
+                                {
+                                return false;
+                                }
+                        
+                    });
+    $('iframe').attr('src','/video/'+urlParams.get('vd')) 
+</script>

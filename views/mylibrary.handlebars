@@ -1,0 +1,409 @@
+<div class="row">
+   <div class=" smallmenu" style="width:100%">
+      <nav class="navbar navbar-light pcdl-blueback m-0 lighten-4">
+
+  <!-- Navbar brand -->
+    <a class="navbar-brand text-white pl-3" href="/">Home</a>
+    <div class="search-bar" style="flex-grow:1">
+                <div class="flex-container">
+                  <div> <i class="fas fa-search pcdl-blue iconspacing"></i> </div>
+                  <div style="flex-grow:1"> <input type="text" class="search-imput" style="width:70%;"/></div>
+                </div>
+    </div>
+  <button type="button" class="btn btn-outline search-button iconspacing text-white">Search</button>
+     {{#if userdata}}
+      <div class=" text-white">
+                <div class="dropdown show pt-1">
+                    <a class="btn dropdown-toggle border-0 text-white" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <span class="p-1">Account</span>{{#if useravatar}}
+                                                          <img class="rounded-circle" src="{{useravatar}}" style="width:30px;height:30px" >
+                                                          {{else}} 
+                                                             <img class="rounded-circle" src="images/profile_user_avatar_people_app_website-512.png" style="width:30px;height:30px" >
+                                                             {{/if}}
+                    </a>
+               
+                  <div class="dropdown-menu bg-white pcdl-blue" aria-labelledby="dropdownMenuLink">
+                     <a class="dropdown-item m-2" href="#">  
+                         {{#if userfirstname}} {{userfullname}} {{else}} {{userdata.email}}{{/if}}</a>
+                     <a class="dropdown-item m-2" href="#"><b>{{userwalletbalance}}.0 ESPEES</b></a>
+                     <a class="dropdown-item m-2" href="/mylibrary">My Library</a>
+                     <a class="dropdown-item m-2" href="/wallet">Wallet</a>
+                     <a class="dropdown-item m-2" href="/logout">Sign out</a>
+                  </div>
+                </div>
+      </div>
+                 {{/if}} 
+  <!-- Collapse button -->
+  <button class="navbar-toggler toggler-example border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+   aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="p-2 "> <i class="fas fa-bars fa-1x text-white"></i></span>
+        </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse col-12" id="navbarSupportedContent1">
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto mt-3">
+      
+      <li class="nav-item active">
+          <!-- Log In Button and Icon-->
+            {{#if userdata}}
+            
+            {{else}} 
+              <a href="/login">
+                <div class="row pl-md-4 py-2">
+                  <div><i class="fas fa-user-alt iconspacing color-white"></i></div>
+                  <div class="color-white">Log in</button></div>
+                </div>
+              </a>
+            
+            
+             <!-- Sign Up Button and Icon-->
+            
+              <a href="/sign_up">
+                <div class="row pl-md-4 py-2">
+                  <div><i class="fas fa-user-plus iconspacing color-white"></i></div>
+                  <div class="color-white">Sign Up</button></div>
+                </div>
+              </a>
+            {{/if}}
+      </li>
+      <li class="nav-item">
+        <a href="#">
+                <div class="row pl-md-4 py-2">
+                  <div><i class="fas fa-question-circle iconspacing color-white"></i></div>
+                  <div class="color-white">Help</button></div>
+                </div>
+              </a>
+      </li>
+      <li class="nav-item">
+       <a href="#">
+                <div class="row pl-md-4 py-2">
+                  <div><i class="fas fa-shopping-cart iconspacing color-white"></i></div>
+                  <div class="color-white">Cart</button></div>
+                </div>
+              </a>
+      </li>
+    </ul>
+    <!-- Links -->
+
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+  </div>
+
+  {{!-- small menu ends here --}}
+ {{!-- Begining of menubar --}}
+    <div id="menu-bar"> 
+      <div  class="container">
+          <div class="flex-container">
+            <div style="flex-grow: 1"></div>
+            <!-- Search bar and icon-->
+            <div class="search-bar" style="flex-grow: 1">
+              <div class="flex-container">
+                <div> <i class="fas fa-search pcdl-blue iconspacing"></i> </div>
+                <div style="flex-grow:1"> <input type="text " class="search-imput"/></div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-outline search-button iconspacing color-white">Search</button>
+             <!-- Home button icon-->
+            <div class="menu-item"> 
+              <a href="/">
+                <div class="flex-container">
+                  <div><i class="fas fa-home iconspacing color-white"></i></div>
+                  <div class="color-white">Home</button></div>
+                </div>
+              </a>
+            </div> 
+            <!-- Log In Button and Icon-->
+            {{#if userdata}}
+            
+            {{else}}
+            <div class="menu-item"> 
+              <a href="/login">
+                <div class="flex-container">
+                  <div><i class="fas fa-user-alt iconspacing color-white"></i></div>
+                  <div class="color-white">Log in</button></div>
+                </div>
+              </a>
+            </div> 
+            
+             <!-- Sign Up Button and Icon-->
+            <div class="menu-item">
+              <a href="/sign_up">
+                <div class="flex-container">
+                  <div><i class="fas fa-user-plus iconspacing color-white"></i></div>
+                  <div class="color-white">Sign Up</button></div>
+                </div>
+              </a>
+            </div>
+            {{/if}}
+
+             <!-- Help Button and Icon-->
+            <div class="menu-item">
+              <a href="#">
+                <div class="flex-container">
+                  <div><i class="fas fa-question-circle iconspacing color-white"></i></div>
+                  <div class="color-white">Help</button></div>
+                </div>
+              </a>
+            </div>
+
+             <!-- Help Button and Icon-->
+            <div class="menu-item">
+              <a href="#">
+                <div class="flex-container">
+                  <div><i class="fas fa-shopping-cart iconspacing color-white"></i></div>
+                  <div class="color-white">Cart</button></div>
+                </div>
+              </a>
+            </div>
+              {{#if userdata}}
+             <div class="menu-item text-white">
+                <div class="dropdown show pt-1">
+                    <a class="btn dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <span class="p-1">Account</span>{{#if useravatar}}
+                                                          <img class="rounded-circle" src="{{useravatar}}" style="width:33px;height:30px;" >
+                                                          {{else}} 
+                                                             <img class="rounded-circle" src="images/profile_user_avatar_people_app_website-512.png" style="width:30px;height:30px" >
+                                                             {{/if}}
+                    </a>
+
+                  <div class="dropdown-menu bg-white pcdl-blue" aria-labelledby="dropdownMenuLink">
+                     <a class="dropdown-item m-2" href="#">  
+                         {{#if userfirstname}} {{userfullname}} {{else}} {{userdata.email}}{{/if}}</a>
+                     <a class="dropdown-item m-2" href="#"><b>{{userwalletbalance}}.0 ESPEES</b></a>
+                     <a class="dropdown-item m-2" href="/mylibrary">My Library</a>
+                     <a class="dropdown-item m-2" href="/wallet">Wallet</a>
+                     <a class="dropdown-item m-2" href="/logout">Sign out</a>
+                  </div>
+                </div>
+                      
+             </div>
+             {{/if}}
+          </div>
+       </div>
+    </div>
+</div>
+<div class="row py-1 text-center" style="background-color: red;color:white;font-weight:400"><div class="col-12 text-center">{{#if userdata}}{{userdata.subscription_name}}{{/if}}</div></div>
+<div class="container_me col-12 col-lg-11 mx-auto">
+  <div class ="row no-gutters" style="margin:10px 10px;">
+      <!-- Side Menu-->
+        <div class="col-lg-2 col-md-1 d-lg-block d-md-none d-sm-none d-none ">
+            <div class="sidemenu text-center">
+                  <div class="side-menu-item"><a href="#"></i>All Messages</a></div>
+                  <hr/>
+                  <div class="side-menu-item"><a href="#">Categories</a></div>
+                  <hr/>
+                  <div class="side-menu-item"><a href="#">Languages</a></div>
+                  <hr/>
+                  {{#if userdata}}<div class="side-menu-item"><a href="/mylibrary">My Library</a></div>{{/if}}
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-10 col-12 mx-md-auto px-md-2 ml-2">
+            <!-- Start WOWSlider.com BODY section -->
+            <div id="wowslider-container1">
+                    <div class="ws_images">
+                          <ul>
+                          <li><img src="data1/images/servingthrudspirit.png" alt="serving-thru-d-spirit" title="serving-thru-d-spirit" id="wows1_0"/></li>
+                          <li><img src="data1/images/the_importance_of_prayer.png" alt="the_importance_of_prayer" title="the_importance_of_prayer" id="wows1_1"/></li>
+                          <li><img src="data1/images/theministryoftheholyghostinyou.png" alt="the-ministry-of-the-holy-ghost-in-you" title="the-ministry-of-the-holy-ghost-in-you" id="wows1_2"/></li>
+                          <li><img src="data1/images/advancing_in_life.png" alt="advancing_in_life" title="advancing_in_life" id="wows1_3"/></li>
+                          <li><img src="data1/images/condyourspiritforexcellence_2.png" alt="cond-your-spirit-for-excellence_2" title="cond-your-spirit-for-excellence_2" id="wows1_4"/></li>
+                          <li><a href="http://wowslider.net"><img src="data1/images/howto2.png" alt="slider jquery" title="how-to2" id="wows1_5"/></a></li>
+                          <li><img src="data1/images/ppt_2.png" alt="ppt_2" title="ppt_2" id="wows1_6"/></li>
+                        </ul>
+                    </div>
+              <div class="ws_bullets d-lg-block d-sm-none d-none">
+                  <div>
+                      <a href="#" title="serving-thru-d-spirit"><span><img src="data1/tooltips/servingthrudspirit.png" alt="serving-thru-d-spirit"/>1</span></a>
+                      <a href="#" title="the_importance_of_prayer"><span><img src="data1/tooltips/the_importance_of_prayer.png" alt="the_importance_of_prayer"/>2</span></a>
+                      <a href="#" title="the-ministry-of-the-holy-ghost-in-you"><span><img src="data1/tooltips/theministryoftheholyghostinyou.png" alt="the-ministry-of-the-holy-ghost-in-you"/>3</span></a>
+                      <a href="#" title="advancing_in_life"><span><img src="data1/tooltips/advancing_in_life.png" alt="advancing_in_life"/>4</span></a>
+                      <a href="#" title="cond-your-spirit-for-excellence_2"><span><img src="data1/tooltips/condyourspiritforexcellence_2.png" alt="cond-your-spirit-for-excellence_2"/>5</span></a>
+                      <a href="#" title="how-to2"><span><img src="data1/tooltips/howto2.png" alt="how-to2"/>6</span></a>
+                      <a href="#" title="ppt_2"><span><img src="data1/tooltips/ppt_2.png" alt="ppt_2"/>7</span></a>
+                  </div>
+              </div>
+           </div>
+            <div class="ws_shadow"></div>
+        	  <!-- End WOWSlider.com BODY section -->
+         </div>	
+          <!-- PCDL TV advert-->
+          <div class="col-lg-2 col-md-1 my-md-2 d-lg-block d-md-none d-sm-none d-none">
+              <div class=".adbox1">
+                <img src="images/pcdltvad.jpg" style="border-radius:20px; width:100%">
+              </div>
+          </div>
+    </div>
+</div>
+<div class="container">
+    <hr/>
+      <h4 class="mt-lg-2 my-3 pl-lg-0 pt-lg-3 pl-4"> My Library</h4>
+     <div class="m-lg-5  pl-lg-3 mx-1 row">
+      {{#each userdata.library}}
+        <div class="mx-lg-2 mt-1 p-1 p-sm-2 p-md-1 text-center message_cards col-4 col-sm-3 col-md-2" style="" >
+             <div class=" my-lg-2 mb-lg-2 m_image" style="">
+                <img class="shadow-lg"  src="{{cover_url}}" style="width:100%;height:100%;border-radius:15px">
+             </div>
+             <div class="m_title">{{title}}</div>
+             <div id="hidden_values" class="d-none">
+                 <span class="m_id">{{id}}</span>
+                 <span class="m_author">{{author}}</span>
+                 <span class="m_url">url</span>
+                 <span class="m_description">{{description}}</span>
+                 <span class="m_type">{{m_type}}</span>
+                 <span class="m_price">{{price}}.0 ESPEES</span>
+             </div>
+        </div>
+      {{/each}}
+         
+         
+    </div>
+    
+   <script>
+        $('.message_cards').click(function(){
+            ti=$(this).find('.m_type').text()
+          //  alert($(this).find('#hidden_values').text())
+          $('#ModalCenter .md_image').attr('src',$(this).find('img').attr('src'))
+            $('#ModalCenter .md_price').text($(this).find('.m_price').text())
+            $('#ModalCenter .md_title').text($(this).find('.m_title').text())
+              $('#ModalCenter .md_author').text($(this).find('.m_author').text())
+              $('#ModalCenter .md_description').text($(this).find('.m_description').text())
+              $('#ModalCenter .album_d').text($(this).find('.m_id').text())
+              if(ti.indexOf('audio')!==-1){
+                console.log(ti)
+                $('#ModalCenter .md_url div.pcdl-blueback').text('LISTEN')
+              }else if(ti.indexOf('video')!==-1){
+                $('#ModalCenter .md_url div.pcdl-blueback').text('WATCH')
+              }else{
+                 $('#ModalCenter .md_url div.pcdl-blueback').text('LISTEN')
+              }
+               $('#ModalCenter').modal('show')
+        })
+    
+</script>
+<!-- Modal Message details-->
+<div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row px-lg-5 px-2 ">
+                        <div class="col-6" style="width:160px;height:160px;">
+                            <img class="shadow-lg md_image"  src="/images/pcdltvad.jpg" style="width:100%;height:100%;border-radius:15px">
+                        </div>
+                        <div class="col-6">
+                            <a class="md_url"><div class="btn pcdl-blueback text-white p-1 mt-2" style="border-radius:35px;width:160px;font-size:x-large">WATCH</div><span class="album_d d-none"></span></a>
+                            <a class="md_buy"><div class="btn pcdl-blue mt-3 p-1 " style="border:#5C93C5 solid 2px; border-radius:35px;width:160px;font-size:x-large">BUY</div></a>
+                            <p class=" mt-2 px-3 md_price" style="font-size:x-large;">10.0 ESPEES</p>
+                        </div>
+                    </div>
+                    <div class="ml-1 pl-1 col-12" >
+                        <div class="font-weight-bold col-md-10 md_title"><h5>The Power and Pursuit of purpose (The Power of Love)</h5></div>
+                    </div>
+                    <div class="ml-1 pl-1 row" >
+                        <div class="col-md-6 font-weight-light md_author" style="font-size: large;">Pastor Chris</div>
+                        <div class="col-md-6 row">
+                            <span class="col-5 m-0 p-0">
+                                <span class="d-none">
+                                    <a class="" ><img src="/images/download_icon.png" style="width:60px;height:autopx"></a>
+                                    <p ><b>Download</b></p>
+                                </span>
+                              
+                            </span>
+                            
+                        </div>
+                        <div class="container-fluid row">
+                              <div class="col-8">
+                              </div>
+                              <div class="col-3">
+                                <a class="" >
+                                <img src="/images/share_icon.png" style="width:60px;height:autopx">
+                                 <p class="pl-1"><b>Share</b></p>
+                                </a>
+                              </div>
+                              
+                              
+                          </div> 
+                        <div class="col-12 mr-4 my-2" style="height:1px;background-color: lightgray;"></div>
+                            <div style="overflow: scroll-y;height:200px">
+                                <p class="text-justified col-12 mr-2 md_description">
+                                    
+                                </p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- Modal Message details-->
+        <div class="modal fade" id="subcriptionpanel" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class=" p-3 mx-auto" style="width: 250px;height:270px">
+                        <img class="sub_img" src="" style="width: 100%;height:100%;border-radius:20px">
+                      </div>
+                      <div class="text-center font-weight-light mb-3">
+                         <div class="sub_title w-50 mx-auto">Message Title</div>
+                        
+                         <div class="sub_author">Author</div>
+                      </div>
+                      <div class="text-center mb-2">
+                          <button class="btn text-white p-1 w-75 my-3 goldmembership"  style="border-radius:30px; background-color: rgb(218, 165, 32);">Upgrade to GOLD MEMBERSHIP</button>
+                          <div class="text-center text-muted">You will have access to stream all Message</div>
+                      </div>
+                       <div class="text-center mb-2">
+                          <button class="btn text-white p-1 w-75 my-3 silvermembership" style="border-radius:30px; background-color:silver;">Upgrade to SILVER MEMBERSHIP</button>
+                          <div class="text-center text-muted mx-4">You will have access to stream or download all products, except new releases</div>
+                      </div>
+                      <div class="text-center mb-2">
+                          <button class="btn pcdl-blueback text-white p-3 w-75 my-3 buymessage"  style="border-radius:30px;">BUY MESSAGE FOR 10.0 ESPEES</button>
+                      </div>
+                    </div>
+              
+              </div>
+            </div>
+      </div>
+      
+      <script>
+        $('.md_url').click(function(e){
+            // alert($(this).find('.album_d').text())
+            //console.log($(this).parent().prev().children('img').attr('src'))
+           cv=$(this).parent()
+            $.post('/album/'+$(this).find('.album_d').text()," ",function(data){
+                 console.log(data)
+                 console.log(data[0].id)
+                 if(data.indexOf('expired')!=-1){
+                     alert('Not signed up')
+                     console.log(cv)
+                        $('.sub_img').attr('src',cv.prev().children('img').attr('src'))
+                        $('.sub_title').text(cv.parent().next().first('div').text())
+                         $('.sub_author').text(cv.parent().next().next().find('.md_author').text())
+                         $('#ModalCenter').modal('hide')
+                        $('#subcriptionpanel').modal('show')
+                   }else{
+                   
+                  //document.location="/video/"+data[0].id+"/imagepictures"
+                  document.location="/playerpage?vd="+data[0].id
+                }
+            }) 
+             
+        })
+      </script>
+</div>

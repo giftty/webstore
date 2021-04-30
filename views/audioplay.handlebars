@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+
+        </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href = "css/pcdlstyle.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap" rel="stylesheet">
+       
+    
+    <!-- End WOWSlider.com HEAD section -->
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    
+    </head>
+    <body class="" style="background-color: lightslategray;">
+        <div class="container shadow-lg bg-light pb-3 my-4">
+            <div class="row container-fluid my-5 ml-3 py-3 m-lg-5 p-lg-3 ">
+                <div class="col-1"></div>
+                <div class="col-9 text-center h3">Now Playing</div>
+                <div class="col-1" onclick="goback()"><i class="fa fa-backward"></i></div>
+            </div>
+           
+                {{#if coversrx}}
+                 <div class="col-5 mx-auto p-0" style="border-radius: 30px;">
+                <img class="shadow-lg" src="{{coversrx}}" style="width: 100%;height:60%;border-radius: 30px;">
+                 </div>
+                {{else}}
+                  <div class="col-5 mx-auto p-0 " style="">
+               <img class="shadow-lg defaultdisk rounded-circle" src="images/pcdldisk.png" style="width: 100%;height:60%;" >
+                 </div>
+               {{/if}}
+           
+            <div class="col-12 text-center my-4 ">
+               <h4 class="font-weight-bold">The 7 Spirits of God</h4>
+               <div class="text-black-50">Pastor Chris</div>
+            </div>
+            <div class="col-12 row justify-content-center slider_container">
+                <div class="current-time col-1 pl-4 text-center">00:00</div>
+                <div class="col-8 col-lg-7">
+                    <input class="col-12 ml-3 ml-lg-0  seek_slider" type="range" min="1" max="100"
+                  value="0" onchange="seekTo()">
+                </div>
+                
+                  <div class=" col-1 total-duration">00:00</div>
+            </div>
+            <div class="col-12 my-3 text-center rox" >
+                <i class="fa fa-fast-backward fa-2x text-black-50 mb-2 mx-2"></i>
+                <i class="fa fa-play-circle fa-5x text-primary playpause-track" onclick="playpauseTrack()"></i>
+                <i class="fa fa-fast-forward fa-2x text-black-50 mb-2 mx-2"></i>
+            </div>
+            
+            
+            
+            
+            <div class="">
+                <audio id="audioplayer">
+                    <source src="{{audiosrx}}" >
+                    Your browser does not support the audio tag.
+                  </audio>
+            </div>
+        </div>
+        <script>
+            let isPlaying = false;
+            let updateTimer;
+          //Create the audio element for the player
+            let curr_track = document.getElementById('audioplayer');
+            let playpause_btn = document.querySelector(".playpause-track");
+            let seek_slider = document.querySelector(".seek_slider");
+            let volume_slider = document.querySelector(".volume_slider");
+            let curr_time = document.querySelector(".current-time");
+            let total_duration = document.querySelector(".total-duration");
+            
+            $(document).ready(function(){
+                loadTrack();
+                 $("body").on("contextmenu", function (e)  
+                   {  
+                        return false;  
+                     });  
+                 $(window).keypress(function (e) {
+                    if (e.keyCode === 0 || e.keyCode === 32) {
+                        e.preventDefault()
+                        playVid();
+                    }else{
+                        e.preventDefault()
+                    }
+                    });
+                    $(document).keydown(function (e) {
+                         if (event.keyCode == 123) {
+                                return false;
+                                }
+                                // Prevent Ctrl+a = disable select all
+                                // Prevent Ctrl+u = disable view page source
+                                // Prevent Ctrl+s = disable save
+                                if (event.ctrlKey && (event.keyCode === 85 || event.keyCode === 83 || event.keyCode ===65 )) {
+                                return false;
+                                }
+                                // Prevent Ctrl+Shift+I = disabled debugger console using keys open
+                                else if (event.ctrlKey && event.shiftKey && event.keyCode === 73)
+                                {
+                                return false;
+                                }
+                        
+                    });
+            })
+            function goback(){
+               // window.location= document.referrer
+            }
+             // Function to reset all values to their default
+            function resetValues() {
+            curr_time.textContent = "00:00";
+            total_duration.textContent = "00:00";
+            seek_slider.value = 0;
+            }
+            function loadTrack() {
+                // Clear the previous seek timer
+                clearInterval(updateTimer);
+                resetValues();
+                
+              
+                curr_track.load();
+                
+                // Update details of the track
+                // Set an interval of 1000 milliseconds
+                // for updating the seek slider
+                updateTimer = setInterval(seekUpdate, 1000);
+                // Move to the next track if the current finishes playing
+                // using the 'ended' event
+                //curr_track.addEventListener("ended", nextTrack);
+                
+                // Apply a random background color
+               // random_bg_color();
+             }
+
+                function playpauseTrack() {
+                    // Switch between playing and pausing
+                    // depending on the current state
+                    if (!isPlaying) playTrack();
+                    else pauseTrack();
+                 }
+        
+
+            function playTrack() {
+            // Play the loaded track
+            curr_track.play();
+            isPlaying = true;
+            $('.defaultdisk').addClass('rotate')
+            // Replace icon with the pause icon
+           $(playpause_btn).removeClass('fa fa-play-circle').addClass('fa fa-pause-circle');
+            }
+            
+            function pauseTrack() {
+            // Pause the loaded track
+            curr_track.pause();
+            isPlaying = false;
+            
+            // Replace icon with the play icon
+            $(playpause_btn).removeClass('fa fa-pause-circle ').addClass('fa fa-play-circle');
+
+             $('.defaultdisk').removeClass('rotate')
+            }
+            function seekTo() {
+            // Calculate the seek position by the
+            // percentage of the seek slider
+            // and get the relative duration to the track
+            seekto = curr_track.duration * (seek_slider.value / 100);
+            
+            // Set the current track position to the calculated seek position
+            curr_track.currentTime = seekto;
+            }
+            
+            function setVolume() {
+            // Set the volume according to the
+            // percentage of the volume slider set
+            curr_track.volume = volume_slider.value / 100;
+            }
+ 
+            function seekUpdate() {
+            let seekPosition = 0;
+            
+            // Check if the current track duration is a legible number
+            if (!isNaN(curr_track.duration)) {
+                seekPosition = curr_track.currentTime * (100 / curr_track.duration);
+                seek_slider.value = seekPosition;
+            
+                // Calculate the time left and the total duration
+                let currentMinutes = Math.floor(curr_track.currentTime / 60);
+                let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
+                let durationMinutes = Math.floor(curr_track.duration / 60);
+                let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
+            
+                // Add a zero to the single digit time values
+                if (currentSeconds < 10) { currentSeconds = "0" + currentSeconds; }
+                if (durationSeconds < 10) { durationSeconds = "0" + durationSeconds; }
+                if (currentMinutes < 10) { currentMinutes = "0" + currentMinutes; }
+                if (durationMinutes < 10) { durationMinutes = "0" + durationMinutes; }
+            
+                // Display the updated duration
+                curr_time.textContent = currentMinutes + ":" + currentSeconds;
+                total_duration.textContent = durationMinutes + ":" + durationSeconds;
+              }
+         }
+        </script>
+    </body>
+</html>

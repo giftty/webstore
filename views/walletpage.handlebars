@@ -1,0 +1,170 @@
+<div class="w-100 walletback" >
+    <div class="row">
+        <div class="col-1 lead text-white pl-5 ml-3 my-4" style="font-size:1.7em;">Wallet</div>
+            <div class="col-12 text-center text-white">
+            <div class="text-center h4">Free User</div>
+            <div class="text-center ">[Not Subcribed]</div>
+        </div>
+        <div class="col-10 mx-auto shadow-lg px-2 pb-4 mt-5 pb-lg-5 text-dark bg-white" style="border-radius: 20px;">
+            <div class="container row pt-2 mx-auto" >
+                <div class="col-6 text-left mb-3">My balance</div><div class="col-6 text-right mb-2"><strong>0.0 </strong>Espees</div>
+                <hr>
+                <div class="text-center col-4 mt-3 text-success" onclick="showrecharge()" >
+                       <div class="py-3 mx-auto" style="width:86px; border-radius:20px;border:solid 2.5px green">
+                           <i class="fa fa-credit-card" style="font-size:1.4em;" ></i>
+                       </div>
+                        <div class="text-center sfont">Recharge</div>
+                </div>
+                 <div class="text-center col-4 mt-3 text-success" onclick="vouchermodal()" >
+                       <div class="py-3 mx-auto" style=" width:86px;border-radius:20px;border:solid 2.5px rgb(34, 2, 109)">
+                           <i class="fa fa-gift" style="font-size:1.4em;color:rgb(34, 2, 109)" ></i>
+                       </div>
+                        <div class="text-center sfont" >Load Voucher</div>
+                </div>
+                <div class="text-center col-4 mt-3  text-success" onclick="opensendEspeesmodal()" >
+                       <div class="py-3 mx-auto" style=" width:86px;border-radius:20px;border:solid 2.5px rgb(34, 2, 109)">
+                           <i class="fa fa-paper-plane" style="font-size:1.4em;color:rgb(34, 2, 109);transform:rotate(60deg)" ></i>
+                       </div>
+                        <div class="text-center sfont" >Send Espees</div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-12 col-lg-8 col-xl-6 mx-auto">
+            <div onclick="extendSubcriPtionmodal()" class="text-center col-10 col-md-10 col-lg-8 mx-auto mt-5 mb-3" style="border:#5C93C5 solid 2px; border-radius:30px;"><a><button class="btn p-2 w-md-50 w-75 " ><h3 style="color:#5C93C5 ;">Extend Subscription</h3></button></a></div>
+            <div onclick="Recenttransactions()" class="text-center col-10 col-md-10 col-lg-8 mx-auto my-3" style="border:#5C93C5 solid 2px; border-radius:30px;"><a ><button class="btn p-2 w-md-50 w-75 " ><h3 style="color:#5C93C5 ;">Recent Transactions</h3></button></a></div>
+            <div class="text-center col-10 col-md-10 col-lg-8 mx-auto my-2" style="border:#5C93C5 solid 2px; border-radius:30px;"><a ><button class="btn p-2 w-md-50 w-75 " ><h3 style="color:#5C93C5 ;">Wallet Settings</h3></button></a></div>
+       </div>
+    </div>
+</div>
+ <!-- Modal Message details-->
+        <div class="modal fade" id="rechargemodal" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" >
+              <div class="modal-content" >
+                    <div class="modal-header border-0 pcdl-blueback text-center" >
+                        <h5 class="modal-title text-white" id="">Recharge</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span class="text-white" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="text-center col-11 col-md-11 mx-auto mb-2 mt-4" style="border:#5C93C5 solid 1px; border-radius:30px;"><a href=""><button class="btn p-2 w-md-50 w-75 d-5" >5 Espees for <strong class="text-warning d-5">N350.00</strong></button></a></div>
+                       <div class="text-center col-11 col-md-11 mx-auto mb-2 mt-4" style="border:#5C93C5 solid 1px; border-radius:30px;"><a href=""><button class="btn p-2 w-md-50 w-75 d-5" >10 Espees for <strong class="text-warning d-5">N720.00</strong></button></a></div>
+                        <div class="text-center col-11 col-md-11 mx-auto mb-2 mt-4" style="border:#5C93C5 solid 1px; border-radius:30px;"><a href=""><button class="btn p-2 w-md-50 w-75 d-5" >25 Espees for <strong class="text-warning d-5">N1,800.00</strong></button></a></div>
+                         <div class="text-center col-11 col-md-11 mx-auto mb-2 mt-4" style="border:#5C93C5 solid 1px; border-radius:30px;"><a href=""><button class="btn p-2 w-md-50 w-75 d-5" >50 Espees for <strong class="text-warning d-5">N3,610.00</strong></button></a></div>
+                         <div class="text-center col-11 col-md-11 mx-auto mb-2 mt-4" style="border:#5C93C5 solid 1px; border-radius:30px;"><a href=""><button class="btn p-2 w-md-50 w-75 d-5" >100 Espees for <strong class="text-warning d-5">N7,230.00</strong></button></a></div>
+
+                    </div>
+              
+              </div>
+            </div>
+      </div>
+      {{!-- load voucher modal --}}
+       <div class="modal fade" id="vouchermodal" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content" style="border-radius: 30px;">
+                    <div class="modal-header border-0 pcdl-blueback text-center">
+                        <div class="col-11">
+                            <div class="bg-warning rounded-circle mx-auto" style="width:80px;height:80px">
+                                <img class="mx-auto my-2 voucheranimate" src="images/voucherimg.png" width="55px" height="55px">
+                            </div>
+                        </div>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span class="text-white" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                       <div class="row m-3" style="border:lightgray solid 1px; border-radius:10px;">
+                            <i class="fa fa-gift p-2 col-auto pcdl-blue" ></i><input type="text" name="text" class="form-control col-10 border-0" placeholder="Gift Voucher Code" >
+                        </div>
+                        <div class="text-center"><button type="submit" class="btn pcdl-blueback text-white p-3 w-50 my-3" style="border-radius:30px;">Redeem Code</button></div>
+
+                    </div>
+              
+              </div>
+            </div>
+      </div>
+      {{!-- Send Espees modal --}}
+       <div class="modal fade" id="sendespeesmodal" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content" style="border-radius: 30px;">
+                     <div class="modal-header border-0 pcdl-blueback text-center">
+                        <h5 class="modal-title text-white" id="">Send Espees</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span class="text-white" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                      <form class="form pt-4" method="POST" action="">
+                        <div class="row m-3" style="border:lightgray solid 1px; border-radius:10px;">
+                            <i class="fas fa-paper-plane p-2 col-auto pcdl-blue" style="transform:rotate(60deg)" ></i><input type="text" name="text" class="form-control col-10 border-0" placeholder="Amount to send" >
+                        </div>
+                        <div class="row m-3" style="border:lightgray solid 1px; border-radius:10px;">
+                            <i class="fas fa-envelope p-2 col-auto pcdl-blue"></i>
+                            <input type="password" name="email" class="form-control col-9 col-sm-10 border-0" placeholder="Recipient email " >
+                        </div>
+                            <div class="text-center"><button type="submit" class="btn pcdl-blueback text-white p-3 w-50 my-3" style="border-radius:30px;">Send Espees</button></div>
+                            
+  
+                    </form>
+                    </div>
+              
+              </div>
+            </div>
+      </div>
+      {{!-- Extend SubcriPtion modal --}}
+        <div class="modal fade" id="extendSubcribtionmodal" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                    <div class="modal-header border-0 pcdl-blueback text-center">
+                        <h5 class="modal-title text-white" id="">Extend Subcription</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span class="text-white" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="text-center col-11 col-md-11 mx-auto mb-2 mt-4" style="border:#5C93C5 solid 1px; border-radius:30px;"><a href=""><button class="btn p-2 w-md-50 w-75 d-5" >1 month for <strong class="text-warning d-5">40 ESPEES</strong></button></a></div>
+                       <div class="text-center col-11 col-md-11 mx-auto mb-2 mt-4" style="border:#5C93C5 solid 1px; border-radius:30px;"><a href=""><button class="btn p-2 w-md-50 w-75 d-5" >3 months for <strong class="text-warning d-5">100 ESPEES</strong></button></a></div>
+                        <div class="text-center col-11 col-md-11 mx-auto mb-2 mt-4" style="border:#5C93C5 solid 1px; border-radius:30px;"><a href=""><button class="btn p-2 w-md-50 w-75 d-5" >6 months for <strong class="text-warning d-5">200 ESPPES</strong></button></a></div>
+                         <div class="text-center col-11 col-md-11 mx-auto mb-2 mt-4" style="border:#5C93C5 solid 1px; border-radius:30px;"><a href=""><button class="btn p-2 w-md-50 w-75 d-5" >12 months for <strong class="text-warning d-5">400 ESPEES</strong></button></a></div>
+                         
+                    </div>
+              
+              </div>
+            </div>
+      </div>
+      {{!-- Recent Transaction --}}
+       <div class="modal fade" id="Recenttransactions" tabindex="-1" role="dialog"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content" style="border-radius: 30px;">
+                     <div class="modal-header border-0 pcdl-blueback text-center">
+                        <h5 class="modal-title text-white" id="">Recent Transactions</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span class="text-white" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="height:120px;">
+                      
+                    </div>
+              
+              </div>
+            </div>
+      </div>
+      <script>
+          function showrecharge(){
+              $('#rechargemodal').modal('show')
+          }
+          function vouchermodal(){
+              $('#vouchermodal').modal('show')
+          }
+          function opensendEspeesmodal(){
+              $('#sendespeesmodal').modal('show')
+          }
+          function extendSubcriPtionmodal(){
+             $('#extendSubcribtionmodal').modal('show')
+          }
+          function Recenttransactions(){
+              $('#Recenttransactions').modal('show')
+          }
+      </script>

@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="container">
+       <div class="text-center h2"><button class="btn p-3 w-md-50 w-75 my-2" style="border-radius:30px;font-size:larger">Sign up</button></div>
+    </div>
+    <div class="card mx-auto shadow col-12 col-md-7" style="border-radius:15px;">
+       <form class="form py-4">
+           <div class="row m-3" style="border:lightgray solid 1px; border-radius:10px;">
+             <i class="fas fa-user p-2 col-auto pcdl-blue"></i><input type="text" name="title" class="form-control col-10 border-0" placeholder="Title" >
+           </div>
+           <div class="row m-3" style="border:lightgray solid 1px; border-radius:10px;">
+             <i class="fas fa-user p-2 col-auto pcdl-blue"></i><input type="text" name="first_name" class="form-control col-10 border-0" placeholder="First Name" >
+           </div>
+           <div class="row m-3" style="border:lightgray solid 1px; border-radius:10px;">
+             <i class="fas fa-user p-2 col-auto pcdl-blue"></i><input type="text" name="last_name" class="form-control col-10 border-0" placeholder="Last Name" >
+           </div>
+           <div class="row m-3" style="border:lightgray solid 1px; border-radius:10px;">
+             <i class="fas fa-envelope p-2 col-auto pcdl-blue"></i><input type="text" name="email" class="form-control col-10 border-0" placeholder="Email Address" >
+           </div>
+           <div class="row m-3" style="border:lightgray solid 1px; border-radius:10px;">
+             <i class="fas fa-globe p-2 col-auto pcdl-blue"></i><input type="text" name="country" class="form-control col-10 border-0" placeholder="Country" >
+           </div>
+           <div class="row m-3" style="border:lightgray solid 1px; border-radius:10px;">
+             <i class="fas fa-unlock-alt p-2 col-auto pcdl-blue"></i>
+             <input type="text" name="password" class="form-control col-10 border-0" placeholder="Password" >
+              <i class="fas fa-eye-slash p-2 col-auto "></i>
+           </div>
+           <div class="row m-3" style="border:lightgray solid 1px; border-radius:10px;">
+             <i class="fas fa-unlock-alt p-2 col-auto pcdl-blue"></i>
+             <input type="text" name="confirm_password" class="form-control col-10 border-0" placeholder="Confirm Password" >
+             <i class="fas fa-eye-slash p-2 col-auto"></i>
+           </div>
+                      {{!-- the profile image section --}}
+          <div id="second-page mb-5">
+                <div class="row no-gutters col-4 mx-auto">
+                    <i class="fas fa-camera col-auto pt-3"></i><div class="rounded-circle text-center p-4" style="border:lightgray solid 1px; width: 120px;height:120px"><i class="fas fa-user fa-5x bg-black"></i></div>
+                </div>
+                <div class="row col-9 mx-auto">
+                    <span class="w-100 p-3 text-center"> Are you a member of Christ Embassy</span>
+                    <div class="px-5 row mx-auto"><label class="px-4">Yes</label><input type="radio" class="form-control-sm pt-3" checked value="yes" name="member"> <label class="px-4">No</label><input class="form-control-sm" value="no" type="radio" name="member"></div>
+                </div>
+          </div>
+           <div class="text-center"><button class="btn pcdl-blueback text-white p-3 w-50 my-3" id="nextbtn" style="border-radius:30px;">Sign up</button></div>
+
+       </form>
+    </div>
+    <div class="text-center col-12 col-md-7 mx-auto my-4" style="border:#5C93C5 solid 1px; border-radius:30px;"><button class="btn p-2 w-md-50 w-75" id="" >Already A User? Sign In</button></div>
+   
+</div>
+<script>
+    $('#nextbtn').click(function(){
+        alert('button click');
+    })
+</script>
